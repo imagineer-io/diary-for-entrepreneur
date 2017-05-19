@@ -32,5 +32,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
         mButton.setOnClickListener(firstOnClickListener);
+
+        if (savedInstanceState == null) {
+            String text = getIntent().getStringExtra("item");
+            mTextView.setText(text);
+        }
     }
 }
