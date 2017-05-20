@@ -44,6 +44,13 @@ public class ListActivity extends AppCompatActivity {
                 articles
         );
 
+        articles.addChangeListener(new RealmChangeListener<RealmResults<Article>>() {
+            @Override
+            public void onChange(RealmResults<Article> articles) {
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

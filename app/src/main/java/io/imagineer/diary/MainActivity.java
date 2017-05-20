@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 article.deleteFromRealm();
                 realm.commitTransaction();
 
+                finish();
+
                 // Article Addition
 //                String titleText = mTitleEditText.getText().toString();
 //                String contentText = mContentEditText.getText().toString();
