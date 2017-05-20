@@ -7,29 +7,19 @@
     android:layout_height="match_parent"
     tools:context="io.imagineer.diary.MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <EditText
+        android:id="@+id/titleEditText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="43dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="title"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        android:layout_marginLeft="0dp"/>
 
     <Button
         android:id="@+id/button"
@@ -41,5 +31,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"/>
+
+    <EditText
+        android:id="@+id/contentEditText"
+        android:layout_width="213dp"
+        android:layout_height="140dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:ems="10"
+        android:hint="content"
+        android:inputType="textMultiLine"
+        app:layout_constraintLeft_toLeftOf="@+id/titleEditText"
+        app:layout_constraintTop_toBottomOf="@+id/titleEditText"/>
 
 </android.support.constraint.ConstraintLayout>

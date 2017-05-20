@@ -1,17 +1,14 @@
 package io.imagineer.diary;
 
+import io.realm.RealmObject;
+
 /**
  * Created by marco on 5/20/17.
  */
 
-public class Article {
+public class Article extends RealmObject {
     private String title;
     private String content;
-
-    public Article(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 
     public String getTitle() {
         return title;
