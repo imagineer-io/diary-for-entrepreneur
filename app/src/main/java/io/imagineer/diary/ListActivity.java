@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
 public class ListActivity extends AppCompatActivity {
@@ -35,8 +36,8 @@ public class ListActivity extends AppCompatActivity {
 
         Realm.init(getApplicationContext());
         Realm realm = Realm.getDefaultInstance().getDefaultInstance();
-        RealmResults<Article> articles = realm.where(Article.class).findAll();
-        CustomAdapter adapter = new CustomAdapter(
+        final RealmResults<Article> articles = realm.where(Article.class).findAll();
+        final CustomAdapter adapter = new CustomAdapter(
                 this,
                 R.layout.list_row,
                 // new ArrayList<Article>(Arrays.asList(articles))
@@ -48,8 +49,10 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ListActivity.this, MainActivity.class);
-                // TODO: fix intent extra
+
                 // intent.putExtra("item", sampleArray[position]);
+                intent.putExtra("title", articles.get(position).getTitle());
+                intent.putExtra("content", articles.get(position).getContent());
                 startActivity(intent);
             }
         });

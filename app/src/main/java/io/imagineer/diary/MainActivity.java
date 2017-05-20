@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mTitleEditText;
     private EditText mContentEditText;
     private Button mButton;
+    private String mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,30 +31,44 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener firstOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String titleText = mTitleEditText.getText().toString();
-                String contentText = mContentEditText.getText().toString();
-                // mTextView.setText(text);
-                mTitleEditText.setText("");
-                mContentEditText.setText("");
-
                 Realm.init(getApplicationContext());
                 Realm realm = Realm.getDefaultInstance();
 
-                // transaction
                 realm.beginTransaction();
-                Article article = realm.createObject(Article.class);
-                article.setTitle(titleText);
-                article.setContent(contentText);
+                final Article article = realm.where(Article.class).equalTo("title", mTitle).findFirst();
+                article.deleteFromRealm();
                 realm.commitTransaction();
+
+                // Article Addition
+//                String titleText = mTitleEditText.getText().toString();
+//                String contentText = mContentEditText.getText().toString();
+//                // mTextView.setText(text);
+//                mTitleEditText.setText("");
+//                mContentEditText.setText("");
+//
+//                Realm.init(getApplicationContext());
+//                Realm realm = Realm.getDefaultInstance();
+//
+//                // transaction
+//                realm.beginTransaction();
+//                Article article = realm.createObject(Article.class);
+//                article.setTitle(titleText);
+//                article.setContent(contentText);
+//                realm.commitTransaction();
             }
         };
 
         mButton.setOnClickListener(firstOnClickListener);
 
         // TODO: fix below
-//        if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
 //            String text = getIntent().getStringExtra("item");
 //            mTextView.setText(text);
-//        }
+            String title = getIntent().getStringExtra("title");
+            String content = getIntent().getStringExtra("content");
+            mTitle = title;
+            mTitleEditText.setText(title);
+            mContentEditText.setText(content);
+        }
     }
 }
