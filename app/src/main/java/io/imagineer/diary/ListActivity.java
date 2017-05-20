@@ -11,6 +11,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class ListActivity extends AppCompatActivity {
 
     private ListView mListView;
@@ -21,18 +24,24 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         // final String[] sampleArray = {"hello", "this", "is", "test"};
-        Article[] articles = {
+//        Article[] articles = {
 //                new Article("title1", "content1"),
 //                new Article("title2", "content2"),
 //                new Article("title3", "content3"),
-        };
+//        };
 
         mListView = (ListView) findViewById(R.id.listView);
         // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, sampleArray);
+
+        Realm.init(getApplicationContext());
+        Realm realm = Realm.getDefaultInstance().getDefaultInstance();
+        RealmResults<Article> articles = realm.where(Article.class).findAll();
         CustomAdapter adapter = new CustomAdapter(
                 this,
                 R.layout.list_row,
-                new ArrayList<Article>(Arrays.asList(articles)));
+                // new ArrayList<Article>(Arrays.asList(articles))
+                articles
+        );
 
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -10,8 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.RealmResults;
 
 /**
  * Created by marco on 5/20/17.
@@ -19,12 +20,12 @@ import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter<Article> {
     private Context mContext;
-    private ArrayList<Article> mArticles;
+    private RealmResults<Article> mArticles;
 
     public CustomAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Article> objects) {
         super(context, resource, objects);
         this.mContext = context;
-        this.mArticles = (ArrayList<Article>) objects;
+        this.mArticles = (RealmResults<Article>) objects;
     }
 
     @NonNull
