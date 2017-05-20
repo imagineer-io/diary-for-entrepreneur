@@ -17,7 +17,12 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        final String[] sampleArray = {"hello", "this", "is", "test"};
+        // final String[] sampleArray = {"hello", "this", "is", "test"};
+        Article[] articles = {
+                new Article("title1", "content1"),
+                new Article("title2", "content2"),
+                new Article("title3", "content3"),
+        };
 
         mListView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> adapter =
